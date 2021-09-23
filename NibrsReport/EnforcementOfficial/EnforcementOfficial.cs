@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 using NibrsModels.Constants;
 using NibrsModels.NibrsReport.Misc;
-using TeUtil.Extensions;
+using NibrsModels.Extensions;
 
 namespace NibrsModels.NibrsReport.EnforcementOfficial
 {

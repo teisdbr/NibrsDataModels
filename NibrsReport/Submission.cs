@@ -1,17 +1,16 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using NibrsModels.Constants;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml;
-using System.Xml.Schema;
 using System.Xml.Serialization;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using NibrsModels.Constants;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using NibrsModels.NibrsReport.Misc;
-using TeUtil.Extensions;
+using NibrsModels.Extensions;
 
 namespace NibrsModels.NibrsReport
 {
@@ -38,7 +37,7 @@ namespace NibrsModels.NibrsReport
 
         [XmlElement("Report")] public List<Report> Reports = new List<Report>();
 
-        [XmlAttribute("schemaLocation", Namespace =Namespaces.xsi)]
+        [XmlAttribute("schemaLocation", Namespace = Namespaces.xsi)]
         //[JsonIgnore]
         public string XsiSchemaLocation = Constants.Misc.schemaLocation;
 
@@ -48,11 +47,12 @@ namespace NibrsModels.NibrsReport
         }
 
 
-        public Submission(string runnumber, string environment)
+        public Submission(string runnumber, string environment, string submissionDateInMMDDYYYY)
         {
 
             Runnumber = runnumber;
             Environment = environment;
+            SubmissionDate = submissionDateInMMDDYYYY.IsNullBlankOrEmpty() ?   (DateTime?)null : Convert.ToDateTime(DateTime.ParseExact(submissionDateInMMDDYYYY, "mmddyyyy", DateTimeFormatInfo.InvariantInfo).ToString(@"mm\/dd\/yyyy"));
         }
 
         public Submission(params Report[] reports)
@@ -92,25 +92,30 @@ namespace NibrsModels.NibrsReport
         [BsonElement]
         [XmlIgnore] public string Runnumber { get; set; }
 
+
+        [BsonElement]
+        [XmlIgnore] public DateTime? SubmissionDate { get; set; }
+
         [BsonElement]
         [XmlIgnore] public string Environment { get; set; }
 
         [BsonElement]
-        [XmlIgnore] public bool IsNibrsReportable
+        [XmlIgnore]
+        public bool IsNibrsReportable
         {
             get
             {
-               
-                    if(Environment == "C")
-                    {
-                        return true;
-                    }
 
-                    return false;
+                if (Environment == "C")
+                {
+                    return true;
+                }
 
-             }
+                return false;
+
+            }
         }
-           
+
         [BsonIgnore]
         [XmlIgnore]
         [JsonIgnore]
@@ -126,19 +131,20 @@ namespace NibrsModels.NibrsReport
 
         /// Note: Below Helper Properties don't intend or useful for Ucr Reports.
 
-       
+
         [XmlIgnore]
         [BsonElement]
         public string ReportingCategory => Reports[0].Header.NibrsReportCategoryCode;
 
-       
+
         [XmlIgnore]
         [BsonElement]
         public string Ori => Reports[0].Header.ReportingAgency.OrgAugmentation.OrgOriId.Id;
 
 
-       
-        [XmlIgnore] [BsonElement]
+
+        [XmlIgnore]
+        [BsonElement]
         public string IncidentNumber => Reports[0]?.Incident?.ActivityId?.Id;
 
         #endregion
@@ -168,7 +174,7 @@ namespace NibrsModels.NibrsReport
             }
             catch (Exception e)
             {
-                throw new Exception("There was an error deserializing a submission: " + fileInfo.Name , e);
+                throw new Exception("There was an error deserializing a submission: " + fileInfo.Name, e);
             }
 
             xmlFile.Flush();

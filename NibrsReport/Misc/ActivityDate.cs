@@ -1,8 +1,8 @@
-﻿using System;
-using System.Xml.Serialization;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 using NibrsModels.Constants;
+using System;
+using System.Xml.Serialization;
 
 namespace NibrsModels.NibrsReport.Misc
 {
@@ -33,7 +33,7 @@ namespace NibrsModels.NibrsReport.Misc
             DateTime = date + "T" + time;
         }
 
-      
+
 
         [XmlElement("DateTime", Namespace = Namespaces.niemCore)]
         public string DateTime
@@ -52,17 +52,17 @@ namespace NibrsModels.NibrsReport.Misc
                     _realDateTime = System.DateTime.TryParse(value, out var dateTimeTemp) ? dateTimeTemp : (DateTime?)null;
                     if (_realDateTime != null)
                     {
-                      
+
                         TimeZoneInfo tzf = TimeZoneInfo.Local;
-                        if (tzf.IsInvalidTime((DateTime)_realDateTime))
+                         
                         {
                             // if time is invalid due to daylight saving. adjust the time
                             _realDateTime = _realDateTime.Value.AddHours(1);
                         }
-                        // set the datetime value  in UTC 
-                        _realDateTime = Convert.ToDateTime(TimeZoneInfo.ConvertTimeToUtc((DateTime)_realDateTime));
+                        // // set the datetime value  in UTC 
+                        // _realDateTime = Convert.ToDateTime(TimeZoneInfo.ConvertTimeToUtc((DateTime)_realDateTime));
                     }
-                }  
+                }
             }
         }
 
@@ -105,15 +105,16 @@ namespace NibrsModels.NibrsReport.Misc
                     _realDateTime = System.DateTime.TryParse(value, out var dateTimeTemp) ? dateTimeTemp : (DateTime?)null;
                     if (_realDateTime != null)
                     {
-                        // set the datetime value  in UTC 
-                        _realDateTime = Convert.ToDateTime(TimeZoneInfo.ConvertTimeToUtc((DateTime)_realDateTime));
+                        // // set the datetime value  in UTC 
+                        // _realDateTime = Convert.ToDateTime(TimeZoneInfo.ConvertTimeToUtc((DateTime)_realDateTime));
                     }
                 }
-               
+
             }
         }
 
-        [BsonIgnore][JsonIgnore]
+        [BsonIgnore]
+        [JsonIgnore]
         public string Time
         {
             get { return _dateTime.Substring(_dateTime.IndexOf("T") + 1); }

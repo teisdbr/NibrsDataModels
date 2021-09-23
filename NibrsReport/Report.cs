@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using NibrsModels.Constants;
 using NibrsModels.NibrsReport.Associations;
 using NibrsModels.Utility;
-using TeUtil.Extensions;
+using NibrsModels.Extensions;
 
 namespace NibrsModels.NibrsReport
 {
