@@ -49,18 +49,15 @@ namespace NibrsModels.NibrsReport.Misc
 
                 if (_realDateTime == null)
                 {
-                    _realDateTime = System.DateTime.TryParse(value, out var dateTimeTemp) ? dateTimeTemp : (DateTime?)null;
+                    _realDateTime = System.DateTime.TryParse(value, out var dateTimeTemp) ? System.DateTime.SpecifyKind(dateTimeTemp,DateTimeKind.Local) : (DateTime?)null;
                     if (_realDateTime != null)
                     {
-
                         TimeZoneInfo tzf = TimeZoneInfo.Local;
                          
                         {
                             // if time is invalid due to daylight saving. adjust the time
                             _realDateTime = _realDateTime.Value.AddHours(1);
                         }
-                        // // set the datetime value  in UTC 
-                        // _realDateTime = Convert.ToDateTime(TimeZoneInfo.ConvertTimeToUtc((DateTime)_realDateTime));
                     }
                 }
             }
@@ -102,12 +99,8 @@ namespace NibrsModels.NibrsReport.Misc
 
                 if (_realDateTime == null)
                 {
-                    _realDateTime = System.DateTime.TryParse(value, out var dateTimeTemp) ? dateTimeTemp : (DateTime?)null;
-                    if (_realDateTime != null)
-                    {
-                        // // set the datetime value  in UTC 
-                        // _realDateTime = Convert.ToDateTime(TimeZoneInfo.ConvertTimeToUtc((DateTime)_realDateTime));
-                    }
+                    _realDateTime = System.DateTime.TryParse(value, out var dateTimeTemp) ? System.DateTime.SpecifyKind(dateTimeTemp,DateTimeKind.Local) : (DateTime?)null;
+                   
                 }
 
             }
