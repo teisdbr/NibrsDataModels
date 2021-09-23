@@ -53,7 +53,7 @@ namespace NibrsModels.NibrsReport.Misc
                     if (_realDateTime != null)
                     {
                         TimeZoneInfo tzf = TimeZoneInfo.Local;
-                         
+                        if (tzf.IsInvalidTime((DateTime)_realDateTime))
                         {
                             // if time is invalid due to daylight saving. adjust the time
                             _realDateTime = _realDateTime.Value.AddHours(1);
