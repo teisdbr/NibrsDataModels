@@ -133,7 +133,7 @@ namespace NibrsModels.NibrsReport
             {
                 return Items.Where(i =>
                     i.NibrsPropertyCategoryCode.MatchOne(NibrsCodeGroups.VehicleProperties) &&
-                    i.Status.Code == ItemStatusCode.STOLEN.NibrsCode()).ToList();
+                    i.Status.Code == "7").ToList();
             }
         }
         
@@ -144,7 +144,7 @@ namespace NibrsModels.NibrsReport
             {
                 return Items.Where(i =>
                     i.NibrsPropertyCategoryCode.MatchOne(NibrsCodeGroups.VehicleProperties) &&
-                    i.Status.Code == ItemStatusCode.RECOVERED.NibrsCode()).ToList();
+                    i.Status.Code == "5").ToList();
             }
         }
 
