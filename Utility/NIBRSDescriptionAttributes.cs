@@ -30,7 +30,15 @@ namespace NibrsModels.Utility
             return desc;
         }
     }
-
+    public class AbbreviationCodeAttribute : NibrsDescriptionAttribute
+    {
+        public AbbreviationCodeAttribute(string description) : base(description) { }
+    
+        public static string GetDescription(Enum nc)
+        {
+            return GetDescription(nc, typeof(AbbreviationCodeAttribute));
+        }
+    }
     public class NibrsCodeAttribute : NibrsDescriptionAttribute
     {
         public NibrsCodeAttribute(string description) : base(description) { }

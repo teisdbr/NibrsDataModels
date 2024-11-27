@@ -3281,30 +3281,34 @@ namespace NibrsModels.Constants
 	[Description("A data type for the NIBRS code for an age of a person")]
 	public enum PersonAgeCode
 	{
-		/// <summary>
-		/// Under 24 Hours
-		/// </summary>
+        /// <summary>
+        /// Under 24 Hours
+        /// </summary>
+        [AbbreviationCode("NN")]
         [NibrsCode("NEONATAL")]
 		[CodeDescription("Under 24 Hours")]
 		NEONATAL,
 
-		/// <summary>
-		/// 1-6 Days Old
-		/// </summary>
+        /// <summary>
+        /// 1-6 Days Old
+        /// </summary>
+        [AbbreviationCode("NB")]
         [NibrsCode("NEWBORN")]
 		[CodeDescription("1-6 Days Old")]
 		NEWBORN,
 
-		/// <summary>
-		/// 7-364 Days Old
-		/// </summary>
+        /// <summary>
+        /// 7-364 Days Old
+        /// </summary>
+        [AbbreviationCode("BB")]
         [NibrsCode("BABY")]
 		[CodeDescription("7-364 Days Old")]
 		BABY,
 
-		/// <summary>
-		/// Unknown
-		/// </summary>
+        /// <summary>
+        /// Unknown
+        /// </summary>
+        [AbbreviationCode("00")]
         [NibrsCode("UNKNOWN")]
 		[CodeDescription("Unknown")]
 		UNKNOWN

@@ -35,6 +35,11 @@ namespace NibrsModels.Utility
             return NibrsCodeAttribute.GetDescription(e);
         }
 
+        public static string AbbreviationCode(this Enum e)
+        {
+            return AbbreviationCodeAttribute.GetDescription(e);
+        }
+
         public static string NibrsCodeDescription(this Enum e)
         {
             return CodeDescriptionAttribute.GetDescription(e);
