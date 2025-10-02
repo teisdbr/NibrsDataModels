@@ -1505,10 +1505,10 @@ namespace NibrsModels.Constants
         BROKEN_BONES,
 
         /// <summary>
-        /// possible public injury
+        /// possible internal injury
         /// </summary>
         [NibrsCode("I")]
-        [CodeDescription("possible public injury")]
+        [CodeDescription("possible internal injury")]
         public_INJURY,
 
         /// <summary>
