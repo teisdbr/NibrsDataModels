@@ -6,7 +6,7 @@
         <RepositoryType>git</RepositoryType>
         <PackageTags>Incident, DataModels</PackageTags>
         <Description>Technology Engineers' own C# utility library with the Reportable Incident Data Models</Description>
-        <Version>1.3.7</Version>
+        <Version>1.3.8</Version>
         <Authors>Technology Engineers</Authors>
         <Copyright>Copyright 2020</Copyright>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
