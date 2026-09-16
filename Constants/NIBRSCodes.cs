@@ -1487,8 +1487,8 @@ namespace NibrsModels.Constants
         /// Drone
         /// </summary>
         [NibrsCode("R")]
-        [CodeDescription("Drone")]
-        DRONE,
+        [CodeDescription("Drone/ Unmanned aircraft system")]
+        DRONE_UNMANNED_AIRCRAFT_SYSTEM,
 
         /// <summary>
         /// Not Applicable
