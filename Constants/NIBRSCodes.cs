@@ -1484,6 +1484,13 @@ namespace NibrsModels.Constants
         DRUGS_NARCOTICS,
 
         /// <summary>
+        /// Drone
+        /// </summary>
+        [NibrsCode("R")]
+        [CodeDescription("Drone")]
+        DRONE,
+
+        /// <summary>
         /// Not Applicable
         /// </summary>
         [NibrsCode("N")]
@@ -1551,7 +1558,14 @@ namespace NibrsModels.Constants
         /// </summary>
         [NibrsCode("U")]
         [CodeDescription("unconsciousness")]
-        UNCONSCIOUSNESS
+        UNCONSCIOUSNESS,
+
+        /// <summary>
+        /// gunshot
+        /// </summary>
+        [NibrsCode("G")]
+        [CodeDescription("gunshot")]
+        GUNSHOT
     }
 
     /// <summary>
